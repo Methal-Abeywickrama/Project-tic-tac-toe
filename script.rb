@@ -1,4 +1,6 @@
 require_relative "win_test.rb"
+require_relative "players/player1.rb"
+require_relative "players/player2.rb"
 class GameBoard
 	include WinTest
 	attr_accessor :already_won, :spots
@@ -92,13 +94,27 @@ class GameBoard
 	end
 end
 
+puts "Hi, lets play a round of tic tac toe"
+puts "\n"
+puts "Ok, player1, whats your name"
+puts "\n"
+player1 = Player1.new(gets.chomp!.to_s)
+
+puts "Hi, lets play a round of tic tac toe"
+puts "\n"
+puts "Ok, player2, whats your name"
+puts "\n"
+player2 = Player2.new(gets.chomp!.to_s)
+puts "\n"
+
 game_board = GameBoard.new
 game_board.display
+
 
 until game_board.already_won
 	can_continue1 = false
 	can_continue2 = false
-	puts "Player 1..."
+	puts "#{player1.name}..."
 	puts "Enter one of the numbers displayed on the board."
 	puts "\n"
 	until can_continue1 do
@@ -107,7 +123,7 @@ until game_board.already_won
 	end
 	game_board.player1_plays(player1_input)
 	next if game_board.already_won
-	puts "Player 2..."
+	puts "#{player2.name}..."
 	puts "Enter one of the numbers displayed on the board."
 	puts "\n"
 	until can_continue2 do
